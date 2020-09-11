@@ -8,6 +8,7 @@ import { QuizComponent } from './quiz/quiz.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  loadComponent:boolean = false;
   title = 'angulartoastr';
   showModal: boolean;
   registerForm: FormGroup;
@@ -25,9 +26,10 @@ export class AppComponent {
   }
 
   ngOnInit() {
+    this.show();
     this.registerForm = this.formBuilder.group({
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(6)]]
+        // email: ['', [Validators.required, Validators.email]],
+        name: ['', [Validators.required]]
     });
 }
 // convenience getter for easy access to form fields
@@ -36,13 +38,15 @@ onSubmit() {
     this.submitted = true;
     // stop here if form is invalid
     if (this.registerForm.invalid) {
+      console.log("invalid");
         return;
     }
     if(this.submitted)
     {
       this.showModal = false;
+      console.log(this.f['name'].value);
+      this.loadComponent = true;
     }
-   
 }
   
 }
